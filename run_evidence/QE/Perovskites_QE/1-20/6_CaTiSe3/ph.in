@@ -1,0 +1,17 @@
+&INPUTPH
+  tr2_ph    = 1.0d-14,
+  prefix    = 'catis3',
+  outdir    = './tmp/',
+  fildyn    = 'catis3.dynG',
+  ldisp     = .false.,
+  nq1       = 1,
+  nq2       = 1,
+  nq3       = 1,
+  trans     = .true.,
+  epsil     = .false.,
+  amass(1)  = 40.078,    ! Ca
+  amass(2)  = 47.867,    ! Ti
+  amass(3)  = 78.971,    ! Se (corrected)
+  verbosity = 'high',
+/
+0.0 0.0 0.0

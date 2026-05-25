@@ -1,0 +1,16 @@
+&inputph
+  prefix      = 'kznbr3',
+  outdir      = './tmp/',
+  fildyn      = 'kznbr3.dynG',
+  ldisp       = .false.,      ! Gamma point only
+  epsil       = .false.,      ! Avoid electric field contribution
+  trans       = .true.,       ! Enforce translational invariance
+  tr2_ph      = 1.0d-12,      ! Tight threshold for convergence
+  alpha_mix(1)= 0.7,
+  reduce_io   = .true.,
+  verbosity   = 'high',
+  amass(1)    = 39.0983,      ! K
+  amass(2)    = 65.38,        ! Zn
+  amass(3)    = 79.904        ! Br
+/
+0.0 0.0 0.0

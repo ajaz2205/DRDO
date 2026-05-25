@@ -1,0 +1,17 @@
+&inputph
+  tr2_ph     = 1.0d-14,
+  prefix     = 'kpbc',
+  outdir     = './output',
+  fildyn     = 'kpbc.dyn',
+  ldisp      = .true.,         ! Full phonon dispersion
+  nq1        = 4,
+  nq2        = 4,
+  nq3        = 4,
+  epsil      = .true.,         ! Born effective charges & dielectric
+  trans      = .true.,
+  reduce_io  = .true.,
+  verbosity  = 'high',
+  amass(1)   = 39.0983,
+  amass(2)   = 207.2,
+  amass(3)   = 35.453
+/

@@ -1,0 +1,47 @@
+&CONTROL
+  calculation       = 'scf',
+  prefix            = 'RbNiI3',
+  pseudo_dir        = '/home/administrator/Downloads/BURAI/BURAI1.3/pseudopot/',
+  outdir            = './tmp/',
+  wf_collect        = .true.,
+  etot_conv_thr     = 1.0d-7,
+/
+
+&SYSTEM
+  ibrav            = 0,
+  nat              = 5,
+  ntyp             = 3,
+  ecutwfc          = 100.0,
+  ecutrho          = 800.0,
+  input_dft        = 'PBE',
+  occupations      = 'smearing',
+  smearing         = 'gaussian',
+  degauss          = 0.005,
+/
+
+&ELECTRONS
+  conv_thr         = 1.0d-12,
+  mixing_beta      = 0.3,
+  diagonalization  = 'david',
+/
+
+CELL_PARAMETERS (angstrom)
+  5.515156136  0.000000000  0.000000000
+  0.000000000  5.515156136  0.000000000
+  0.000000000  0.000000000  5.515156136
+
+ATOMIC_SPECIES
+  Rb   85.4678   Rb.pbe-spn-rrkjus_psl.1.0.0.UPF
+  Ni   58.6934   Ni.pbe-spn-kjpaw_psl.1.0.0.UPF
+  I    126.9045  I.pbe-n-kjpaw_psl.1.0.0.UPF
+
+ATOMIC_POSITIONS (crystal)
+  Rb  0.0000000  0.0000000  0.0000000
+  Ni  0.5000000  0.5000000  0.5000000
+  I   0.5000000  0.5000000  0.0000000
+  I   0.5000000  0.0000000  0.5000000
+  I   0.0000000  0.5000000  0.5000000
+
+K_POINTS automatic
+ 8 8 8  0 0 0
+

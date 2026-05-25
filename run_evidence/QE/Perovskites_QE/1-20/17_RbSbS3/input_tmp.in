@@ -1,0 +1,17 @@
+&inputph
+  prefix       = 'rbsbs3',
+  outdir       = './tmp/',
+  fildyn       = 'rbsbs3.dynG',
+  ldisp        = .false.,    ! Γ‑only
+  epsil        = .false.,
+  trans        = .true.,
+  tr2_ph       = 1.0d-10,    ! loosened threshold
+  alpha_mix(1) = 0.5,        ! gentler mixing
+  reduce_io    = .true.,
+  verbosity    = 'high',
+  amass(1)     = 85.4678,
+  amass(2)     = 121.760,
+  amass(3)     = 32.065,
+/
+0.0 0.0 0.0
+

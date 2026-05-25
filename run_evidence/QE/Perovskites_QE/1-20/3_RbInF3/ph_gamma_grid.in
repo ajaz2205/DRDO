@@ -1,0 +1,17 @@
+&inputph
+  tr2_ph     = 1.0d-14,
+  prefix     = 'rbinf3',
+  outdir     = './tmp/',
+  fildyn     = 'rbinf3.dyn',
+  ldisp      = .true.,
+  nq1        = 4,
+  nq2        = 4,
+  nq3        = 4,
+  amass(1)   = 85.4678,
+  amass(2)   = 114.818,
+  amass(3)   = 18.998,
+  trans      = .true.,
+  reduce_io  = .true.,
+  start_q    = 1,
+  last_q     = 1
+/

@@ -1,0 +1,42 @@
+&CONTROL
+  calculation   = 'scf',
+  prefix        = 'KGeI3',
+  pseudo_dir    = '/home/administrator/Downloads/BURAI/BURAI1.3/pseudopot/',
+  outdir        = './tmp/',
+  etot_conv_thr = 1.0d-5,
+/
+
+&SYSTEM
+  ibrav         = 1,
+  celldm(1)     = 11.22,        ! 5.936103274 Å / 0.529177 Å·Bohr⁻¹ ≃ 11.22 Bohr
+  nat           = 5,
+  ntyp          = 3,
+  ecutwfc       = 100.0,
+  ecutrho       = 800.0,
+  input_dft     = 'PBE',
+  occupations   = 'smearing',
+  smearing      = 'gaussian',
+  degauss       = 0.01,
+/
+
+&ELECTRONS
+  conv_thr        = 1.0d-10,
+  mixing_beta     = 0.3,
+  diagonalization = 'david',
+/
+
+ATOMIC_SPECIES
+  K   39.0983   K.pbe-spn-kjpaw_psl.1.0.0.UPF
+  Ge  72.630    Ge.pbe-n-kjpaw_psl.1.0.0.UPF
+  I  126.9045   I.pbe-n-kjpaw_psl.1.0.0.UPF
+
+ATOMIC_POSITIONS (crystal)
+  K   0.0000000000  0.0000000000  0.0000000000
+  Ge  0.5000000000  0.5000000000  0.5000000000
+  I   0.5000000000  0.5000000000  0.0000000000
+  I   0.5000000000  0.0000000000  0.5000000000
+  I   0.0000000000  0.5000000000  0.5000000000
+
+K_POINTS automatic
+ 10 10 10  0 0 0
+

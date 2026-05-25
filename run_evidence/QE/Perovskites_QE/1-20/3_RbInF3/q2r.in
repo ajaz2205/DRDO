@@ -1,0 +1,4 @@
+&input
+  fildyn = 'rbinf3.dyn',
+  zasr   = 'crystal'
+/

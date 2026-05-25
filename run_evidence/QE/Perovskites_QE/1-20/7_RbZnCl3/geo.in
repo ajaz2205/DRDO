@@ -1,0 +1,53 @@
+&CONTROL
+  calculation   = 'vc-relax',
+  prefix        = 'rbzncl3',
+  outdir        = './tmp/',
+  pseudo_dir    = '/home/administrator/Downloads/BURAI/BURAI1.3/pseudopot/',
+  tprnfor       = .true.,
+  tstress       = .true.,
+  wf_collect    = .true.,
+  etot_conv_thr = 1.0d-6,
+  forc_conv_thr = 1.0d-4,
+/
+
+&SYSTEM
+  ibrav         = 1,
+  celldm(1)     = 9.13473218,  ! a = 4.836610383 Å → a(Bohr) = 4.836610383 × 1.889725989
+  nat           = 5,
+  ntyp          = 3,
+  ecutwfc       = 80.0,
+  ecutrho       = 640.0,
+  occupations   = 'smearing',
+  smearing      = 'gaussian',
+  degauss       = 0.002,
+  input_dft     = 'pbe',
+/
+
+&ELECTRONS
+  conv_thr       = 1.0d-10,
+  mixing_beta    = 0.3,
+/
+
+&IONS
+  ion_dynamics = 'bfgs',
+/
+
+&CELL
+  cell_dynamics = 'bfgs',
+  press_conv_thr = 0.5,
+/
+
+ATOMIC_SPECIES
+Rb  85.4678  Rb.pbe-spn-kjpaw_psl.1.0.0.UPF
+Zn  65.38    Zn.pbe-spn-kjpaw_psl.1.0.0.UPF
+Cl  35.45    Cl.pbe-n-kjpaw_psl.1.0.0.UPF 
+
+ATOMIC_POSITIONS crystal
+Rb  0.000000  0.000000  0.000000
+Zn  0.500000  0.500000  0.500000
+Cl  0.500000  0.500000  0.000000
+Cl  0.500000  0.000000  0.500000
+Cl  0.000000  0.500000  0.500000
+
+K_POINTS automatic
+8 8 8  0 0 0

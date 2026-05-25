@@ -1,0 +1,15 @@
+&inputph
+  tr2_ph     = 1.0d-14,
+  prefix     = 'rbzncl3',
+  outdir     = './tmp/',
+  fildyn     = 'rbzncl3.dynG',
+  ldisp      = .false.,
+  epsil      = .true.,
+  trans      = .true.,
+  reduce_io  = .true.,
+  verbosity  = 'high',
+  amass(1)   = 85.4678,   ! Rb
+  amass(2)   = 65.38,     ! Zn
+  amass(3)   = 35.45,     ! Cl
+/
+0.0 0.0 0.0

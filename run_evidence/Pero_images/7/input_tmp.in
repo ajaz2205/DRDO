@@ -1,0 +1,17 @@
+&inputph
+  prefix       = 'ksncl3',
+  outdir       = './tmp/',
+  fildyn       = 'ksncl3.dynG',
+  ldisp        = .false.,      ! Γ-point only
+  epsil        = .false.,      ! no dielectric/LO-TO splitting
+  trans        = .true.,       ! enforce translational invariance
+  tr2_ph       = 1.0d-12,      ! tight dynamical-matrix convergence
+  alpha_mix(1) = 0.5,          ! gentle mixing
+  reduce_io    = .true.,       ! slim down I/O
+  verbosity    = 'high',
+  amass(1)     = 39.0983,      ! K
+  amass(2)     = 118.71,       ! Sn
+  amass(3)     = 35.453,       ! Cl
+/
+0.0 0.0 0.0
+

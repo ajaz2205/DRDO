@@ -1,0 +1,16 @@
+&inputph
+  prefix       = 'AgGeF3',
+  outdir       = './tmp/',
+  fildyn       = 'AgGeF3.dynG',
+  ldisp        = .false.,      ! Γ-point only
+  epsil        = .false.,      ! no LO–TO splitting
+  trans        = .true.,       ! enforce translational invariance
+  tr2_ph       = 1.0d-14,      ! tight convergence on dynamical matrix
+  alpha_mix(1) = 0.5,          ! gentle mixing for response
+  reduce_io    = .true.,       ! slim I/O
+  verbosity    = 'high',
+  amass(1)     = 107.8682,     ! Ag
+  amass(2)     = 72.6300,      ! Ge
+  amass(3)     = 18.9984,      ! F
+/
+0.0 0.0 0.0

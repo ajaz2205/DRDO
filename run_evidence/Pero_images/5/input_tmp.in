@@ -1,0 +1,17 @@
+&inputph
+  prefix       = 'kcoi3',
+  outdir       = './tmp/',
+  fildyn       = 'kcoi3.dynG',
+  ldisp        = .false.,      ! Γ‑point only
+  epsil        = .false.,      ! no dielectric/LO‑TO splitting
+  trans        = .true.,       ! enforce translational invariance
+  tr2_ph       = 1.0d-14,      ! very tight phonon convergence
+  alpha_mix(1) = 0.7,
+  reduce_io    = .true.,       ! slim down I/O
+  verbosity    = 'high',
+  amass(1)     = 39.0983,      ! K
+  amass(2)     = 58.9332,      ! Co
+  amass(3)     = 126.90447,    ! I
+/
+0.0 0.0 0.0
+

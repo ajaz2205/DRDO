@@ -1,0 +1,101 @@
+Begin final coordinates
+     new unit-cell volume =   1235.29543 a.u.^3 (   183.05190 Ang^3 )
+     density =      3.19910 g/cm^3
+
+CELL_PARAMETERS (alat=  8.87370000)
+   1.209164913   0.000000000   0.000000000
+   0.000000000   1.209164913   0.000000000
+   0.000000000   0.000000000   1.209164913
+
+ATOMIC_POSITIONS (crystal)
+K                0.0000000000        0.0000000000        0.0000000000
+Pb               0.5000000000        0.5000000000        0.5000000000
+Cl               0.5000000000        0.5000000000        0.0000000000
+Cl               0.0000000000        0.5000000000        0.5000000000
+Cl               0.5000000000        0.0000000000        0.5000000000
+End final coordinates
+
+
+
+     Writing config-only to output data dir ./output/kpbc.save/ :
+     XML data file
+
+     Final scf calculation at the relaxed structure.
+     The G-vectors are recalculated for the final unit cell
+     Results may differ from those at the preceding step.
+
+     Parallelization info
+     --------------------
+     sticks:   dense  smooth     PW     G-vecs:    dense   smooth      PW
+     Min         734     367    102                42246    14937    2194
+     Max         735     368    103                42249    14940    2195
+     Sum        5877    2941    821               337987   119513   17557
+
+     Using Slab Decomposition
+
+
+
+     bravais-lattice index     =            1
+     lattice parameter (alat)  =       8.8737  a.u.
+     unit-cell volume          =    1235.2954 (a.u.)^3
+     number of atoms/cell      =            5
+     number of atomic types    =            3
+     number of electrons       =        44.00
+     number of Kohn-Sham states=           26
+     kinetic-energy cutoff     =      80.0000  Ry
+     charge density cutoff     =     640.0000  Ry
+     scf convergence threshold =      1.0E-12
+     mixing beta               =       0.3000
+     number of iterations used =            8  plain     mixing
+     press convergence thresh. =      5.0E-01
+     Exchange-correlation= PBE
+                           (   1   4   3   4   0   0   0)
+
+     celldm(1)=   8.873700  celldm(2)=   0.000000  celldm(3)=   0.000000
+     celldm(4)=   0.000000  celldm(5)=   0.000000  celldm(6)=   0.000000
+
+     crystal axes: (cart. coord. in units of alat)
+               a(1) = (   1.209165   0.000000   0.000000 )  
+               a(2) = (   0.000000   1.209165   0.000000 )  
+               a(3) = (   0.000000   0.000000   1.209165 )  
+
+     reciprocal axes: (cart. coord. in units 2 pi/alat)
+               b(1) = (  0.827017  0.000000  0.000000 )  
+               b(2) = (  0.000000  0.827017  0.000000 )  
+               b(3) = (  0.000000  0.000000  0.827017 )  
+
+
+     PseudoPot. # 1 for K  read from file:
+     /home/administrator/Downloads/BURAI/BURAI1.3/pseudopot/K.pbe-spn-kjpaw_psl.1.0.0.UPF
+     MD5 check sum: 14ff5a24ff9f8afecca2cb30191d3c3d
+     Pseudo is Projector augmented-wave + core cor, Zval =  9.0
+     Generated using "atomic" code by A. Dal Corso  v.5.1.2
+     Shape of augmentation charge: PSQ
+     Using radial grid of 1165 points,  6 beta functions with: 
+                l(1) =   0
+                l(2) =   0
+                l(3) =   1
+                l(4) =   1
+                l(5) =   2
+                l(6) =   2
+     Q(r) pseudized with 0 coefficients 
+
+
+     PseudoPot. # 2 for Pb read from file:
+     /home/administrator/Downloads/BURAI/BURAI1.3/pseudopot/Pb.pbe-dn-kjpaw_psl.1.0.0.UPF
+     MD5 check sum: 275f23f58902f069ef3c136e5289616f
+     Pseudo is Projector augmented-wave + core cor, Zval = 14.0
+     Generated using "atomic" code by A. Dal Corso  v.5.1.2
+     Shape of augmentation charge: PSQ
+     Using radial grid of 1281 points,  6 beta functions with: 
+                l(1) =   0
+                l(2) =   0
+                l(3) =   1
+                l(4) =   1
+                l(5) =   2
+                l(6) =   2
+     Q(r) pseudized with 0 coefficients 
+
+
+     PseudoPot. # 3 for Cl read from file:
+     /home/administrator/Downloads/BURAI/BURAI1.3/pseudopot/Cl.pbe-n-rrkjus_psl.1.0.0.UPF

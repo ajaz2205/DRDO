@@ -1,0 +1,20 @@
+&INPUTPH
+  prefix       = 'laals3',
+  outdir       = './tmp/',
+  fildyn       = 'laals3.dynG',
+
+  ldisp        = .false.,   ! Γ only
+  epsil        = .false.,   ! no LO‑TO splitting needed
+  trans        = .true.,    ! enforce translational invariance
+
+  tr2_ph       = 1.0d-14,   ! tight DDV threshold
+  alpha_mix(1) = 0.7,
+  reduce_io    = .true.,
+  verbosity    = 'high',
+
+  amass(1)     = 138.91,    ! La
+  amass(2)     = 26.9815,   ! Al
+  amass(3)     = 32.065     ! S
+/
+0.0 0.0 0.0
+

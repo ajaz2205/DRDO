@@ -1,0 +1,15 @@
+&INPUTPH
+  prefix       = 'rbfebr3',
+  outdir       = './tmp/',
+  fildyn       = 'rbfebr3.dynG',
+  ldisp        = .false.,
+  epsil        = .false.,      ! No dielectric tensor or LO-TO splitting
+  trans        = .true.,       ! Enforce translational invariance
+  reduce_io    = .true.,
+  verbosity    = 'high',
+  tr2_ph       = 1.0d-14,
+  amass(1)     = 85.4678,      ! Rb
+  amass(2)     = 55.845,       ! Fe
+  amass(3)     = 79.904        ! Br
+/
+0.0 0.0 0.0

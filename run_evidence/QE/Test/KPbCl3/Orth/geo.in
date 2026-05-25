@@ -1,0 +1,60 @@
+&CONTROL
+  calculation = 'vc-relax',
+  prefix = 'kpbc_ortho',
+  outdir = './output/',
+  pseudo_dir = '/home/administrator/Downloads/BURAI/BURAI1.3/pseudopot/',
+  verbosity = 'high',
+  tstress = .true.,
+  tprnfor = .true.,
+  etot_conv_thr = 1.0d-6,
+  forc_conv_thr = 1.0d-5,
+/
+
+&SYSTEM
+  ibrav = 0,  ! Allow free relaxation for lower symmetry
+  nat = 5,
+  ntyp = 3,
+  ecutwfc = 100.0,   ! Increased for better accuracy
+  ecutrho = 800.0,   ! Consistent with higher accuracy
+  occupations = 'smearing',
+  smearing = 'mv',
+  degauss = 0.005,
+  nosym = .false.,
+/
+
+&ELECTRONS
+  conv_thr = 1.0d-12,   ! Tight SCF convergence
+  mixing_beta = 0.3,
+  diagonalization = 'david',
+/
+
+&IONS
+  ion_dynamics = 'bfgs',
+/
+
+&CELL
+  cell_dynamics = 'bfgs',
+  press_conv_thr = 0.5,
+  cell_dofree = 'ibrav',
+  cell_factor = 2.0,
+/
+
+CELL_PARAMETERS angstrom
+  5.680   0.000   0.000
+  0.000   5.720   0.000
+  0.000   0.000   5.800  ! All three lattice parameters free to optimize
+
+ATOMIC_SPECIES
+  K   39.0983   K.pbe-spn-kjpaw_psl.1.0.0.UPF
+  Pb  207.2     Pb.pbe-dn-kjpaw_psl.1.0.0.UPF
+  Cl  35.453    Cl.pbe-n-rrkjus_psl.1.0.0.UPF
+
+ATOMIC_POSITIONS crystal
+  K   0.0000000000   0.0000000000   0.0000000000
+  Pb  0.5000000000   0.5000000000   0.5000000000
+  Cl  0.4950000000   0.5050000000   0.0100000000  ! More perturbation
+  Cl  0.0150000000   0.4950000000   0.5100000000
+  Cl  0.5100000000   0.0100000000   0.4950000000
+
+K_POINTS automatic
+  12 12 12 0 0 0  ! High k-mesh for accuracy

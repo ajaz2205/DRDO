@@ -1,0 +1,17 @@
+&inputph
+  prefix       = 'KSbSe3',
+  outdir       = './tmp/',
+  fildyn       = 'KSbSe3.dynG',
+  ldisp        = .false.,      ! Γ-point only
+  epsil        = .false.,      ! no LO–TO splitting for stability check
+  trans        = .true.,       ! enforce translational invariance
+  tr2_ph       = 1.0d-14,      ! very tight convergence on dynamical matrix
+  alpha_mix(1) = 0.5,          ! gentle mixing for response
+  reduce_io    = .true.,       ! slim down I/O
+  verbosity    = 'high',
+  amass(1)     = 39.0983,      ! K
+  amass(2)     = 121.7600,     ! Sb
+  amass(3)     = 78.9710,      ! Se
+/
+0.0 0.0 0.0
+

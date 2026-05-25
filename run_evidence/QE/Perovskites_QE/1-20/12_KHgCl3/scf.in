@@ -1,0 +1,44 @@
+&CONTROL
+  calculation = 'scf',
+  prefix = 'khgcl3',
+  outdir = './tmp/',
+  pseudo_dir = '/home/administrator/Downloads/BURAI/BURAI1.3/pseudopot/',
+  verbosity = 'high',
+/
+
+&SYSTEM
+  ibrav = 0,
+  nat = 5,
+  ntyp = 3,
+  ecutwfc = 80.0,
+  ecutrho = 640.0,
+  input_dft = 'PBE',
+  occupations = 'smearing',
+  smearing = 'gaussian',
+  degauss = 0.005,
+/
+
+&ELECTRONS
+  conv_thr = 1.0d-10,
+  mixing_beta = 0.4,
+/
+
+CELL_PARAMETERS (angstrom)
+  5.704303273  0.000000000  0.000000000
+  0.000000000  5.704303273  0.000000000
+  0.000000000  0.000000000  5.704303273
+
+ATOMIC_SPECIES
+K   39.0983   K.pbe-spn-kjpaw_psl.1.0.0.UPF
+Hg  200.59    Hg.pbe-spn-kjpaw_psl.1.0.0.UPF
+Cl  35.45     Cl.pbe-n-kjpaw_psl.1.0.0.UPF
+
+ATOMIC_POSITIONS (crystal)
+K   0.000000  0.000000  0.000000
+Hg  0.500000  0.500000  0.500000
+Cl  0.000000  0.500000  0.000000
+Cl  0.500000  0.000000  0.000000
+Cl  0.000000  0.000000  0.500000
+
+K_POINTS automatic
+12 12 12 0 0 0

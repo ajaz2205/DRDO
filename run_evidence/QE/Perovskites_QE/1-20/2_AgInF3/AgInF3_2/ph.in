@@ -1,0 +1,15 @@
+&inputph
+  tr2_ph     = 1.0d-10,
+  prefix     = 'aginf3',
+  outdir     = './output/',
+  fildyn     = 'aginf3.dynG',
+  ldisp      = .false.,
+  epsil      = .false.,
+  trans      = .true.,
+  reduce_io  = .true.,
+  verbosity  = 'high',
+  amass(1)   = 107.8682,
+  amass(2)   = 114.818,
+  amass(3)   = 18.998
+/
+0.0 0.0 0.0

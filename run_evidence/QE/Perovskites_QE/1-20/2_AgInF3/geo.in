@@ -1,0 +1,59 @@
+&CONTROL
+  calculation   = 'vc-relax',
+  prefix        = 'aginf3_broken',
+  outdir        = './output/',
+  pseudo_dir    = '/home/administrator/Downloads/BURAI/BURAI1.3/pseudopot/',
+  verbosity     = 'high',
+  tstress       = .true.,
+  tprnfor       = .true.,
+  etot_conv_thr = 1.0d-6,
+  forc_conv_thr = 1.0d-5,
+/
+
+&SYSTEM
+  ibrav         = 0,
+  nat           = 5,
+  ntyp          = 3,
+  ecutwfc       = 80.0,
+  ecutrho       = 640.0,
+  occupations   = 'smearing',
+  smearing      = 'mv',
+  degauss       = 0.005,
+  nosym         = .true.,
+/
+
+&ELECTRONS
+  conv_thr      = 1.0d-10,
+  mixing_beta   = 0.3,
+  diagonalization = 'david',
+/
+
+&IONS
+  ion_dynamics  = 'bfgs',
+/
+
+&CELL
+  cell_dynamics = 'bfgs',
+  press_conv_thr = 0.5,
+  cell_factor    = 2.0,
+/
+
+ATOMIC_SPECIES
+  Ag  107.8682  Ag.pbe-spn-kjpaw_psl.1.0.0.UPF
+  In  114.818   In.pbe-dn-kjpaw_psl.1.0.0.UPF
+  F   18.998    F.pbe-n-kjpaw_psl.1.0.0.UPF
+
+CELL_PARAMETERS angstrom
+  3.540000000   0.000000000   0.000000000
+  0.000000000   3.540000000   0.000000000
+  0.000000000   0.000000000   3.540000000
+
+ATOMIC_POSITIONS crystal
+  Ag  0.000000  0.000000  0.000000
+  In  0.500000  0.500000  0.500000
+  F   0.500100  0.500000  0.000000
+  F   0.000000  0.500200  0.500000
+  F   0.500000  0.000000  0.500300
+
+K_POINTS automatic
+  6 6 6 0 0 0

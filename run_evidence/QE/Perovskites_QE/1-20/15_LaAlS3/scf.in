@@ -1,0 +1,48 @@
+&CONTROL
+  calculation     = 'scf',
+  prefix          = 'laals3',
+  outdir          = './tmp/',
+  pseudo_dir      = '/home/administrator/Downloads/BURAI/BURAI1.3/pseudopot/',
+  verbosity       = 'high',
+  tstress         = .true.,
+  tprnfor         = .true.,
+  etot_conv_thr   = 1.0d-9
+/
+
+&SYSTEM
+  ibrav           = 0,
+  nat             = 5,
+  ntyp            = 3,
+  ecutwfc         = 100.0,
+  ecutrho         = 800.0,
+  occupations     = 'fixed',
+  input_dft       = 'PBE'
+/
+
+&ELECTRONS
+  conv_thr        = 1.0d-12,
+  electron_maxstep= 200,
+  mixing_beta     = 0.30,
+  diagonalization = 'david'
+/
+
+ATOMIC_SPECIES
+  La   138.91    La.pbe-spfn-rrkjus_psl.1.0.0.UPF
+  Al    26.9815  Al.pbe-n-rrkjus_psl.1.0.0.UPF
+  S     32.065   S.pbe-n-kjpaw_psl.1.0.0.UPF
+
+CELL_PARAMETERS angstrom
+  4.678282992   0.000000000   0.000000000
+  0.000000000   4.678282992   0.000000000
+  0.000000000   0.000000000   4.678282992
+
+ATOMIC_POSITIONS crystal
+  La  0.0000000000  0.0000000000  0.0000000000
+  Al  0.5000000000  0.5000000000  0.5000000000
+   S  0.5000000000  0.5000000000  0.0000000000
+   S  0.5000000000  0.0000000000  0.5000000000
+   S  0.0000000000  0.5000000000  0.5000000000
+
+K_POINTS automatic
+  8 8 8  0 0 0
+

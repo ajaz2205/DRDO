@@ -1,0 +1,55 @@
+&CONTROL
+  calculation = 'vc-relax',
+  prefix = 'knbs3',
+  outdir = './tmp/',
+  pseudo_dir = '/home/administrator/Downloads/BURAI/BURAI1.3/pseudopot/',
+  tstress = .true.,
+  tprnfor = .true.,
+  verbosity = 'high',
+/
+
+&SYSTEM
+  ibrav = 0,
+  nat = 5,
+  ntyp = 3,
+  ecutwfc = 80.0,
+  ecutrho = 640.0,
+  input_dft = 'PBE',
+  occupations = 'smearing',
+  smearing = 'gaussian',
+  degauss = 0.005,
+/
+
+&ELECTRONS
+  conv_thr = 1.0d-8,
+  mixing_beta = 0.4,
+/
+
+&IONS
+  ion_dynamics = 'bfgs',
+/
+
+&CELL
+  cell_dynamics = 'bfgs',
+  press_conv_thr = 0.5,
+/
+
+ATOMIC_SPECIES
+K   39.0983   K.pbe-spn-rrkjus_psl.1.0.0.UPF
+Nb  92.9064   Nb.pbe-spn-kjpaw_psl.1.0.0.UPF
+S   32.0600   S.pbe-n-kjpaw_psl.1.0.0.UPF
+
+CELL_PARAMETERS (angstrom)
+  4.737615434   0.000000000   0.000000000
+  0.000000000   4.737615434   0.000000000
+  0.000000000   0.000000000   4.737615434
+
+ATOMIC_POSITIONS (crystal)
+K   0.000000   0.000000   0.000000
+Nb  0.500000   0.500000   0.500000
+S   0.500000   0.000000   0.000000
+S   0.000000   0.500000   0.000000
+S   0.000000   0.000000   0.500000
+
+K_POINTS automatic
+8 8 8 0 0 0

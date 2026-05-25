@@ -1,0 +1,17 @@
+&inputph
+  prefix       = 'AgGeBr3',
+  outdir       = './tmp/',
+  fildyn       = 'AgGeBr3.dynG',
+  ldisp        = .false.,      ! Γ-point only
+  epsil        = .false.,      ! no LO–TO splitting for stability check
+  trans        = .true.,       ! enforce translational invariance
+  tr2_ph       = 1.0d-14,      ! very tight convergence on dynamical matrix
+  alpha_mix(1) = 0.5,          ! gentle mixing for response
+  reduce_io    = .true.,       ! slim down I/O
+  verbosity    = 'high',
+  amass(1)     = 107.8682,     ! Ag
+  amass(2)     = 72.6300,      ! Ge
+  amass(3)     = 79.9040,      ! Br
+/
+0.0 0.0 0.0
+

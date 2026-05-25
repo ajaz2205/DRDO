@@ -1,0 +1,15 @@
+&INPUTPH
+  prefix        = 'cscoi3',
+  outdir       = './tmp/'
+  fildyn       = 'CsCoI3.dynG'
+  ldisp        = .false.
+  epsil        = .false.
+  reduce_io    = .true.
+  verbosity    = 'high'
+  tr2_ph       = 1.0d-14
+  amass(1)     = 132.90545
+  amass(2)     =  58.93320
+  amass(3)     = 126.90447
+/
+0.0 0.0 0.0
+

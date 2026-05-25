@@ -1,0 +1,61 @@
+&CONTROL
+  calculation   = 'vc-relax',
+  prefix        = 'caces3',
+  outdir        = './tmp/',
+  pseudo_dir    = '/home/administrator/Downloads/BURAI/BURAI1.3/pseudopot/',
+  tstress       = .true.,
+  tprnfor       = .true.,
+  verbosity     = 'high',
+  etot_conv_thr = 1.0d-7,
+  forc_conv_thr = 1.0d-6,
+/
+
+&SYSTEM
+  ibrav         = 0,
+  nat           = 5,
+  ntyp          = 3,
+  ecutwfc       = 80.0,
+  ecutrho       = 640.0,
+  occupations   = 'smearing',
+  smearing      = 'mp',
+  degauss       = 0.01,
+  input_dft     = 'PBE',
+/
+
+&ELECTRONS
+  conv_thr         = 1.0d-10,
+  mixing_beta      = 0.3,
+  diagonalization  = 'david',
+/
+
+&IONS
+  ion_dynamics = 'bfgs',
+/
+
+&CELL
+  cell_dynamics = 'bfgs',
+  cell_factor   = 1.5,
+  press         = 0.0,
+  press_conv_thr = 0.1,
+  cell_dofree   = 'all',
+/
+
+ATOMIC_SPECIES
+  Ca  40.078   Ca.pbe-spn-kjpaw_psl.1.0.0.UPF
+  Ce 140.116   Ce.pbe-spdn-kjpaw_psl.1.0.0.UPF
+  Se  78.96    Se.pbe-n-kjpaw_psl.1.0.0.UPF
+
+CELL_PARAMETERS angstrom
+  5.58   0.00   0.00
+  0.00   5.58   0.00
+  0.00   0.00   5.58
+
+ATOMIC_POSITIONS crystal
+  Ca  0.000000  0.000000  0.000000
+  Ce  0.500000  0.500000  0.500000
+  Se  0.500000  0.000000  0.000000
+  Se  0.000000  0.500000  0.000000
+  Se  0.000000  0.000000  0.500000
+
+K_POINTS automatic
+  12 12 12 0 0 0

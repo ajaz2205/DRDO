@@ -1,0 +1,43 @@
+&CONTROL
+  calculation = 'scf',
+  prefix      = 'cscoi3',
+  outdir      = './tmp/',
+  pseudo_dir  = '/home/administrator/Downloads/BURAI/BURAI1.3/pseudopot/',
+  verbosity   = 'high',
+  tprnfor     = .true.,
+  tstress     = .true.,
+/
+
+&SYSTEM
+  ibrav       = 1,
+  celldm(1)   = 12.93,          ! 6.839330765 Å / 0.529177 Å·Bohr⁻¹ ≃ 12.93 Bohr
+  nat         = 5,
+  ntyp        = 3,
+  ecutwfc     = 80.0,
+  ecutrho     = 640.0,
+  input_dft   = 'PBE',
+  occupations = 'smearing',
+  smearing    = 'gaussian',
+  degauss     = 0.05,
+/
+
+&ELECTRONS
+  conv_thr    = 1.0d-14,
+  mixing_beta = 0.4,
+/
+
+ATOMIC_SPECIES
+  Cs 132.9050  Cs.pbe-mt_bw.UPF
+  Co  58.9332  Co.pbe-spn-kjpaw_psl.1.0.0.UPF
+  I  126.9045  I.pbe-mt_bw.UPF
+
+ATOMIC_POSITIONS (crystal)
+  Cs 0.0000000 0.0000000 0.0000000
+  Co 0.5000000 0.5000000 0.5000000
+  I  0.5000000 0.0000000 0.0000000
+  I  0.0000000 0.5000000 0.0000000
+  I  0.0000000 0.0000000 0.5000000
+
+K_POINTS automatic
+ 10 10 10 0 0 0
+

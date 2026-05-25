@@ -1,0 +1,16 @@
+&inputph
+  prefix      = 'csnbs3',
+  outdir      = './tmp/',
+  fildyn      = 'csnbs3.dynG',
+  ldisp       = .false.,
+  epsil       = .false.,     ! ← Avoid electric field for metals
+  trans       = .true.,      ! ← Translational invariance
+  tr2_ph      = 1.0d-14,     ! ← Tight convergence for phonons
+  alpha_mix(1)= 0.7,         ! ← Optional: stabilize DDV mixing
+  reduce_io   = .true.,
+  verbosity   = 'high',
+  amass(1)    = 132.905,     ! Cs
+  amass(2)    = 92.906,      ! Nb
+  amass(3)    = 32.06        ! S
+/
+0.0 0.0 0.0

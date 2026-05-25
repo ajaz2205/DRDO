@@ -1,0 +1,9 @@
+&inputph
+  prefix  = 'aginf3',
+  outdir  = './tmp/',
+  fildyn  = 'aginf3.dynG',
+  ldisp   = .false.,
+  epsil   = .false.,   ! ✅ <- this line changed
+  tr2_ph  = 1.0d-12,
+/
+0.0 0.0 0.0

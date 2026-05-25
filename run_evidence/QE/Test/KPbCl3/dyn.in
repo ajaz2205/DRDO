@@ -1,0 +1,5 @@
+&input
+  fildyn='kpbc.dynG',
+  asr='simple'
+  filout='phonon_modes_corrected.dat'
+/

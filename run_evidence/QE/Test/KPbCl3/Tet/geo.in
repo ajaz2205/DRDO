@@ -1,0 +1,60 @@
+&CONTROL
+  calculation = 'vc-relax',
+  prefix = 'kpbc_tetra',
+  outdir = './output/',
+  pseudo_dir = '/home/administrator/Downloads/BURAI/BURAI1.3/pseudopot/',
+  verbosity = 'high',
+  tstress = .true.,
+  tprnfor = .true.,
+  etot_conv_thr = 1.0d-6,   ! More accurate energy convergence
+  forc_conv_thr = 1.0d-5,   ! More accurate force convergence
+/
+
+&SYSTEM
+  ibrav = 0,   ! Allow free lattice optimization
+  nat = 5,
+  ntyp = 3,
+  ecutwfc = 100.0,   ! Increased for better accuracy
+  ecutrho = 800.0,   ! Maintain ecutrho = 8 × ecutwfc for stability
+  occupations = 'smearing',
+  smearing = 'mv',
+  degauss = 0.005,
+  nosym = .false.,
+/
+
+&ELECTRONS
+  conv_thr = 1.0d-12,   ! Very tight SCF convergence
+  mixing_beta = 0.3,
+  diagonalization = 'david',
+/
+
+&IONS
+  ion_dynamics = 'bfgs',
+/
+
+&CELL
+  cell_dynamics = 'bfgs',
+  press_conv_thr = 0.5,
+  cell_dofree = 'ibrav',
+  cell_factor = 2.0,
+/
+
+CELL_PARAMETERS angstrom
+  5.690   0.000   0.000
+  0.000   5.690   0.000
+  0.000   0.000   5.810  ! c-axis slightly longer for tetragonal symmetry breaking
+
+ATOMIC_SPECIES
+  K   39.0983   K.pbe-spn-kjpaw_psl.1.0.0.UPF
+  Pb  207.2     Pb.pbe-dn-kjpaw_psl.1.0.0.UPF
+  Cl  35.453    Cl.pbe-n-rrkjus_psl.1.0.0.UPF
+
+ATOMIC_POSITIONS crystal
+  K   0.0000000000   0.0000000000   0.0000000000
+  Pb  0.5000000000   0.5000000000   0.5000000000
+  Cl  0.5000000000   0.5000000000   0.0200000000  ! Slight displacement to break cubic symmetry
+  Cl  0.0200000000   0.5000000000   0.5000000000
+  Cl  0.5000000000   0.0200000000   0.5000000000
+
+K_POINTS automatic
+  12 12 12 0 0 0  ! Higher k-mesh for better convergence

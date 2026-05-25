@@ -1,0 +1,68 @@
+
+     Program THERMO_PW v.7.3.1 starts on 26Apr2025 at 10:28: 8 
+
+     This program is part of the open-source Quantum ESPRESSO suite
+     for quantum simulation of materials; please cite
+         "P. Giannozzi et al., J. Phys.:Condens. Matter 21 395502 (2009);
+         "P. Giannozzi et al., J. Phys.:Condens. Matter 29 465901 (2017);
+         "P. Giannozzi et al., J. Chem. Phys. 152 154105 (2020);
+          URL http://www.quantum-espresso.org", 
+     in publications or presentations arising from this work. More details at
+     http://www.quantum-espresso.org/quote
+
+     Parallel version (MPI), running on     8 processors
+
+     MPI processes distributed on     1 nodes
+     K-points division:     npool     =       4
+     R & G space division:  proc/nbgrp/npool/nimage =       2
+     49425 MiB available memory on the printing compute node when the environment starts
+
+     Reading input from _temporary_1
+     file Cs.pbe-spn-rrkjus_psl.1.0.0.UPF: wavefunction(s)  5S 6S renormalized
+     file Nb.pbe-spn-rrkjus_psl.1.0.0.UPF: wavefunction(s)  4S 4P renormalized
+
+     IMPORTANT: XC functional enforced from input :
+     Exchange-correlation= PBE
+                           (   1   4   3   4   0   0   0)
+     Any further DFT definition will be discarded
+     Please, verify this is what you really want
+
+
+     Point group of the at O_h (m-3m) 
+
+
+     ibrav=0, please use:
+
+     ibrav=  1,
+     celldm(1)=    9.9881745757,
+
+ATOMIC_POSITIONS (alat)
+Cs      0.0000000000     0.0000000000     0.0000000000
+Nb      0.5000000000     0.5000000000     0.5000000000
+S       0.5000000000     0.0000000000     0.0000000000
+S       0.0000000000     0.5000000000     0.0000000000
+S       0.0000000000     0.0000000000     0.5000000000
+
+     The code will now stop, modify the pw.x input
+     or set find_ibrav=.TRUE. in thermo_control to continue 
+     with these modified coordinates.
+
+     Set continue_zero_ibrav=.TRUE. to continue with ibrav=0 (not recommended).
+
+   Info: using nr1, nr2, nr3 values from input
+
+     Times for scf pw.x
+
+     Times for non scf pw.x
+
+     Times for ph.x 
+ laxlib_end: laxlib was not initialized 
+
+     THERMO_PW    :      0.86s CPU      0.89s WALL
+
+
+   This run was terminated on:  10:28: 9  26Apr2025            
+
+=------------------------------------------------------------------------------=
+   JOB DONE.
+=------------------------------------------------------------------------------=

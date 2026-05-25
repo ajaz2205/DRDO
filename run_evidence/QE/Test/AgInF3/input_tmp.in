@@ -1,0 +1,17 @@
+&inputph
+  tr2_ph     = 1.0d-12,
+  prefix     = 'aginf3',
+  outdir     = './output',
+  fildyn     = 'aginf3.dynG',
+  ldisp      = .false.,           ! ← Only Γ-point phonon calculation
+  nq1        = 1,
+  nq2        = 1,
+  nq3        = 1,                 ! ← Only one q-point (Γ)
+  epsil      = .false.,
+  trans      = .true.,
+  reduce_io  = .true.,
+  verbosity  = 'low',
+  amass(1)   = 107.8682,          ! Ag
+  amass(2)   = 114.818,           ! In
+  amass(3)   = 18.998             ! F
+/

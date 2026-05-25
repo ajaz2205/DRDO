@@ -1,0 +1,15 @@
+&INPUTPH
+  prefix       = 'khgcl3',
+  outdir       = './tmp/',
+  fildyn       = 'khgcl3.dynG',
+  ldisp        = .false.,
+  epsil        = .false.,      ! No need for dielectric tensor or LO-TO splitting
+  trans        = .true.,       ! Enforce translational invariance
+  reduce_io    = .true.,
+  verbosity    = 'high',
+  tr2_ph       = 1.0d-14,
+  amass(1)     = 39.0983,      ! K
+  amass(2)     = 200.59,       ! Hg
+  amass(3)     = 35.45         ! Cl
+/
+0.0 0.0 0.0

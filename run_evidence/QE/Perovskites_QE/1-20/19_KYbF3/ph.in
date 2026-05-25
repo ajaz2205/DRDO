@@ -1,0 +1,16 @@
+&inputph
+  prefix       = 'kybf3',
+  outdir       = './tmp/',
+  fildyn       = 'kybf3.dynG',
+  ldisp        = .false.,      ! Γ-point only
+  epsil        = .false.,      ! no dielectric/LO-TO splitting
+  trans        = .true.,       ! enforce translational invariance
+  tr2_ph       = 1.0d-12,      ! tight dynamical-matrix convergence
+  alpha_mix(1) = 0.5,          ! gentle mixing
+  reduce_io    = .true.,       ! slim down I/O
+  verbosity    = 'high',
+  amass(1)     = 39.0983,      ! K
+  amass(2)     = 173.054,      ! Yb
+  amass(3)     = 18.9984,      ! F
+/
+0.0 0.0 0.0

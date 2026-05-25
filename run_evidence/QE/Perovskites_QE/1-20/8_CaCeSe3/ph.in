@@ -1,0 +1,14 @@
+&inputph
+  tr2_ph     = 1.0d-14,
+  prefix     = 'caces3',
+  outdir     = './tmp/',
+  fildyn     = 'caces3.dynG',
+  epsil      = .false.,
+  trans      = .true.,
+  reduce_io  = .true.,
+  verbosity  = 'high',
+  amass(1)   = 40.078,    ! Ca
+  amass(2)   = 140.116,   ! Ce
+  amass(3)   = 78.96,     ! Se
+/
+0.0 0.0 0.0

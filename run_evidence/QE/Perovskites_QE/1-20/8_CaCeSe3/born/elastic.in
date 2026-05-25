@@ -1,0 +1,48 @@
+&CONTROL
+  calculation   = 'scf'
+  prefix        = 'caces3'
+  outdir        = './tmp/'
+  pseudo_dir    = '/home/administrator/Downloads/BURAI/BURAI1.3/pseudopot/'
+  tstress       = .true.
+  tprnfor       = .true.
+  verbosity     = 'high'
+/
+
+&SYSTEM
+  ibrav         = 0
+  nat           = 5
+  ntyp          = 3
+  ecutwfc       = 100.0
+  ecutrho       = 800.0
+  occupations   = 'smearing'
+  smearing      = 'methfessel-paxton'
+  degauss       = 0.01
+  input_dft     = 'PBE'
+/
+
+&ELECTRONS
+  conv_thr        = 1.0d-12
+  mixing_beta     = 0.3
+  diagonalization = 'david'
+/
+
+ATOMIC_SPECIES
+  Ca  40.078   Ca.pbe-spn-kjpaw_psl.1.0.0.UPF
+  Ce 140.116   Ce.pbe-spdn-kjpaw_psl.1.0.0.UPF
+  Se  78.960   Se.pbe-n-kjpaw_psl.1.0.0.UPF
+
+CELL_PARAMETERS (angstrom)
+  5.300277157   0.000000000   0.000000000
+  0.000000000   5.300277157   0.000000000
+  0.000000000   0.000000000   5.300277157
+
+ATOMIC_POSITIONS (crystal)
+  Ca  0.0000000  0.0000000  0.0000000
+  Ce  0.5000000  0.5000000  0.5000000
+  Se  0.5000000  0.0000000  0.0000000
+  Se  0.0000000  0.5000000  0.0000000
+  Se  0.0000000  0.0000000  0.5000000
+
+K_POINTS automatic
+ 12 12 12  0 0 0
+

@@ -1,0 +1,48 @@
+&CONTROL
+  calculation   = 'scf',
+  prefix        = 'cscoi3',
+  outdir        = './tmp/',
+  pseudo_dir    = '/home/administrator/Downloads/BURAI/BURAI1.3/pseudopot/',
+  verbosity     = 'high',
+  tprnfor       = .true.,
+  tstress       = .true.,
+  wf_collect    = .true.,
+/
+
+&SYSTEM
+  ibrav                   = 0,
+  nat                     = 5,
+  ntyp                    = 3,
+  ecutwfc                 = 80.0,
+  ecutrho                 = 640.0,
+  input_dft               = 'PBE',
+  nspin                   = 2,        ! collinear spin
+  occupations             = 'fixed',
+  tot_magnetization       = 1.0,
+  starting_magnetization(2) = 0.5,    ! Co initial moment
+/
+
+&ELECTRONS
+  conv_thr       = 1.0d-14,
+  mixing_beta    = 0.4,
+/
+
+ATOMIC_SPECIES
+  Cs 132.9050  Cs.pbe-mt_bw.UPF
+  Co  58.9332  Co.pbe-spn-kjpaw_psl.1.0.0.UPF
+  I  126.9045  I.pbe-mt_bw.UPF
+
+CELL_PARAMETERS angstrom
+  6.839330765   0.000000000   0.000000000
+  0.000000000   6.839330765   0.000000000
+  0.000000000   0.000000000   6.839330765
+
+ATOMIC_POSITIONS crystal
+  Cs 0.0000000 0.0000000 0.0000000
+  Co 0.5000000 0.5000000 0.5000000
+  I  0.5000000 0.0000000 0.0000000
+  I  0.0000000 0.5000000 0.0000000
+  I  0.0000000 0.0000000 0.5000000
+
+K_POINTS automatic
+ 12 12 12 0 0 0

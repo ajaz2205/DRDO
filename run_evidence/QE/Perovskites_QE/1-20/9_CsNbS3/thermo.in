@@ -1,0 +1,26 @@
+cat > thermo_pw.in <<EOF
+&INPUT_THERMO
+  prefix         = 'csnbs3',
+  outdir         = '../tmp/',
+  fildyn         = 'csnbs3.dynG',
+  pseudo_dir     = '/home/administrator/Downloads/BURAI/BURAI1.3/pseudopot/',
+  restart_mode   = 'from_scratch',
+  calculation    = 'elastic',
+  nstep          = 100,
+  etot_conv_thr  = 1.0d-6,
+  forc_conv_thr  = 1.0d-5,
+  stress_conv_thr= 0.1,
+  degauss        = 0.01,
+  smearing       = 'gaussian',
+  tprnfor        = .true.,
+  tstress        = .true.,
+  verbosity      = 'high',
+  nbnd           = 30,
+  ecutwfc        = 100,
+  ecutrho        = 800,
+  occupations    = 'smearing',
+  ntyp           = 3,
+  nat            = 5,
+  ibrav          = 0,
+/
+EOF

@@ -1,0 +1,17 @@
+&inputph
+  tr2_ph   = 1.0d-18,    ! **Ultimate phonon convergence threshold (extremely tight)**
+  prefix   = 'kpbc',
+  outdir   = './output',
+  fildyn   = 'kpbc.dyn',
+  ldisp    = .true.,      ! **Compute full phonon dispersion**
+  nq1      = 12,          ! **Super dense q-mesh (12×12×12) for max accuracy**
+  nq2      = 12,
+  nq3      = 12,
+  epsil    = .true.,      ! **Include LO-TO splitting & Born effective charges**
+  trans    = .true.,      ! **Use translational symmetry corrections**
+  reduce_io = .true.,     ! **Reduce I/O noise and disk storage**
+  verbosity = 'high',     ! **Detailed output for debugging & verification**
+  amass(1) = 39.0983,     ! **Atomic masses (K)**
+  amass(2) = 207.2,       ! **Atomic masses (Pb)**
+  amass(3) = 35.453,      ! **Atomic masses (Cl)**
+/

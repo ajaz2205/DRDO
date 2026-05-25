@@ -1,0 +1,16 @@
+&inputph
+  prefix      = 'knbs3',
+  outdir      = './tmp/',
+  fildyn      = 'knbs3.dynG',
+  ldisp       = .false.,         ! Only Γ-point
+  epsil       = .false.,         ! Skip dielectric tensor
+  trans       = .true.,          ! Enforce translational invariance
+  tr2_ph      = 1.0d-12,         ! Tight convergence
+  alpha_mix(1)= 0.7,             ! Stabilizes mixing (optional)
+  reduce_io   = .true.,
+  verbosity   = 'high',
+  amass(1)    = 39.0983,         ! K
+  amass(2)    = 92.9064,         ! Nb
+  amass(3)    = 32.06            ! S
+/
+0.0 0.0 0.0

@@ -1,0 +1,49 @@
+&CONTROL
+  calculation    = 'scf',
+  prefix         = 'kcoi3',
+  outdir         = './tmp/',
+  pseudo_dir     = '/home/administrator/Downloads/BURAI/BURAI1.3/pseudopot/',
+  verbosity      = 'high',
+  tstress        = .true.,
+  tprnfor        = .true.,
+  etot_conv_thr  = 1.0d-8,
+/
+
+&SYSTEM
+  ibrav           = 0,
+  nat             = 5,
+  ntyp            = 3,
+  ecutwfc         = 100.0,
+  ecutrho         = 800.0,
+  occupations = 'smearing',
+  smearing = 'gaussian',
+  degauss = 0.005,
+  input_dft       = 'PBE',
+/
+
+&ELECTRONS
+  conv_thr       = 1.0d-12,
+  mixing_beta    = 0.30,
+  diagonalization= 'david',
+/
+
+CELL_PARAMETERS (angstrom)
+   5.419702055   0.000000000   0.000000000
+   0.000000000   5.419702055   0.000000000
+   0.000000000   0.000000000   5.419702055
+
+ATOMIC_SPECIES
+  K   39.0983    K.pbe-spn-kjpaw_psl.1.0.0.UPF
+  Co  58.9332    Co.pbe-spn-kjpaw_psl.1.0.0.UPF
+  I  126.90447   I.pbe-mt_bw.UPF
+
+ATOMIC_POSITIONS (crystal)
+  K   0.0000000  0.0000000  0.0000000
+  Co  0.5000000  0.5000000  0.5000000
+  I   0.5000000  0.5000000  0.0000000
+  I   0.5000000  0.0000000  0.5000000
+  I   0.0000000  0.5000000  0.5000000
+
+K_POINTS automatic
+  8 8 8 0 0 0
+

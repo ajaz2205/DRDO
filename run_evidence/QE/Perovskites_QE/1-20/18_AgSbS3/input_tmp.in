@@ -1,0 +1,17 @@
+&inputph
+  prefix       = 'agsbs3',
+  outdir       = './tmp/',
+  fildyn       = 'agsbs3.dynG',
+  ldisp        = .false.,      ! Γ-point only
+  epsil        = .false.,      ! no dielectric/LO-TO splitting
+  trans        = .true.,       ! enforce translational invariance
+  tr2_ph       = 1.0d-12,      ! tight convergence for dynamical matrix
+  alpha_mix(1) = 0.5,          ! gentler mixing to avoid oscillations
+  reduce_io    = .true.,       ! slim down I/O
+  verbosity    = 'high',
+  amass(1)     = 107.868,      ! Ag
+  amass(2)     = 121.760,      ! Sb
+  amass(3)     = 32.065,       ! S
+/
+0.0 0.0 0.0
+

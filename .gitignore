@@ -1,0 +1,25 @@
+# Keep the proof repo lightweight.
+# The local machine has full raw runs; this repo stores only thesis + compact evidence.
+
+.DS_Store
+
+# Quantum ESPRESSO scratch and binary-heavy artifacts
+tmp/
+output/
+restart/
+re/
+_ph0/
+*.save/
+*.wfc*
+*.bar*
+*.ebar*
+*.com*
+*.dwf*
+*.mix*
+charge-density.dat
+wfc*.dat
+
+# Large/local packaging artifacts
+*.zip
+*.tar
+*.tar.gz

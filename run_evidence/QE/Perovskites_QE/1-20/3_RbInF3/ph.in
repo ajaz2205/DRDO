@@ -1,0 +1,13 @@
+&INPUTPH
+  tr2_ph       = 1.0d-14,
+  prefix       = 'rbinf3',
+  outdir       = './tmp/',
+  fildyn       = 'rbinf3.dynG',
+  ldisp        = .false.,
+  nq1          = 1,
+  nq2          = 1,
+  nq3          = 1,
+  verbosity    = 'high',
+  trans        = .true.,
+/
+0.0 0.0 0.0

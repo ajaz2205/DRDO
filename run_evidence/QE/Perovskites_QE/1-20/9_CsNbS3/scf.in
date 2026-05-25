@@ -1,0 +1,48 @@
+&CONTROL
+  calculation   = 'scf',
+  prefix        = 'csnbs3',
+  outdir        = './tmp/',
+  pseudo_dir    = '/home/administrator/Downloads/BURAI/BURAI1.3/pseudopot/',
+  verbosity     = 'high',
+  tstress       = .true.,
+  tprnfor       = .true.,
+  etot_conv_thr = 1.0d-8,
+/
+
+&SYSTEM
+  ibrav         = 0,
+  nat           = 5,
+  ntyp          = 3,
+  ecutwfc       = 100.0,
+  ecutrho       = 800.0,
+  occupations   = 'smearing',
+  smearing      = 'gaussian',
+  degauss       = 0.005,
+  input_dft     = 'PBE',
+/
+
+&ELECTRONS
+  conv_thr         = 1.0d-12,
+  mixing_beta      = 0.3,
+  diagonalization  = 'david',
+/
+
+ATOMIC_SPECIES
+  Cs  132.91   Cs.pbe-spn-rrkjus_psl.1.0.0.UPF
+  Nb   92.91   Nb.pbe-spn-kjpaw_psl.1.0.0.UPF
+  S    32.06   S.pbe-n-kjpaw_psl.1.0.0.UPF
+
+CELL_PARAMETERS angstrom
+  5.285514364   0.000000000   0.000000000
+  0.000000000   5.285514364   0.000000000
+  0.000000000   0.000000000   5.285514364
+
+ATOMIC_POSITIONS crystal
+  Cs  0.0000000000  0.0000000000  0.0000000000
+  Nb  0.5000000000  0.5000000000  0.5000000000
+  S   0.5000000000  0.0000000000  0.0000000000
+  S   0.0000000000  0.5000000000  0.0000000000
+  S   0.0000000000  0.0000000000  0.5000000000
+
+K_POINTS automatic
+  12 12 12 0 0 0

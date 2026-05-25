@@ -1,0 +1,44 @@
+&CONTROL
+  calculation = 'scf',
+  prefix = 'kznbr3',
+  outdir = './tmp/',
+  pseudo_dir = '/home/administrator/Downloads/BURAI/BURAI1.3/pseudopot/',
+  verbosity = 'high',
+/
+
+&SYSTEM
+  ibrav = 0,
+  nat = 5,
+  ntyp = 3,
+  ecutwfc = 80.0,
+  ecutrho = 640.0,
+  input_dft = 'PBE',
+  occupations = 'smearing',
+  smearing = 'gaussian',
+  degauss = 0.005,
+/
+
+&ELECTRONS
+  conv_thr = 1.0d-8,
+  mixing_beta = 0.4,
+/
+
+CELL_PARAMETERS (angstrom)
+  5.842518399   0.000000000   0.000000000
+  0.000000000   5.842518399   0.000000000
+  0.000000000   0.000000000   5.842518399
+
+ATOMIC_SPECIES
+K   39.0983   K.pbe-spn-kjpaw_psl.1.0.0.UPF
+Zn  65.38     Zn.pbe-spn-kjpaw_psl.1.0.0.UPF
+Br  79.904    Br.pbe-n-kjpaw_psl.1.0.0.UPF
+
+ATOMIC_POSITIONS (crystal)
+K   0.0000000000   0.0000000000   0.0000000000
+Zn  0.5000000000   0.5000000000   0.5000000000
+Br  0.5000000000   0.0000000000   0.0000000000
+Br  0.0000000000   0.5000000000   0.0000000000
+Br  0.0000000000   0.0000000000   0.5000000000
+
+K_POINTS automatic
+10 10 10 0 0 0

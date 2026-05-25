@@ -1,0 +1,17 @@
+&inputph
+  prefix       = 'CsNbSe3',
+  outdir       = './tmp/',
+  fildyn       = 'CsNbSe3.dynG',
+  ldisp        = .false.,      ! Γ-point only
+  epsil        = .false.,      ! no LO-TO splitting
+  trans        = .true.,       ! enforce translational invariance
+  tr2_ph       = 1.0d-12,      ! tight convergence on dynamical matrix
+  alpha_mix(1) = 0.5,          ! gentle mixing for response
+  reduce_io    = .true.,       ! slim down I/O
+  verbosity    = 'high',
+  amass(1)     = 132.9055,     ! Cs
+  amass(2)     = 92.9064,      ! Nb
+  amass(3)     = 78.9710,      ! Se
+/
+0.0 0.0 0.0
+

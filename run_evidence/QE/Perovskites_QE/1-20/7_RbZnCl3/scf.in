@@ -1,0 +1,46 @@
+&CONTROL
+  calculation   = 'scf',
+  prefix        = 'rbzncl3',
+  outdir        = './tmp/',
+  pseudo_dir    = '/home/administrator/Downloads/BURAI/BURAI1.3/pseudopot/',
+  tstress       = .true.,
+  tprnfor       = .true.,
+  verbosity     = 'high',
+  etot_conv_thr = 1.0d-8,
+/
+
+&SYSTEM
+  ibrav         = 0,
+  nat           = 5,
+  ntyp          = 3,
+  ecutwfc       = 100.0,
+  ecutrho       = 800.0,
+  occupations   = 'fixed',
+  input_dft     = 'pbe',
+/
+
+&ELECTRONS
+  conv_thr       = 1.0d-10,
+  mixing_beta    = 0.3,
+  diagonalization = 'david',
+/
+
+ATOMIC_SPECIES
+Rb  85.4678  Rb.pbe-spn-kjpaw_psl.1.0.0.UPF
+Zn  65.38    Zn.pbe-spn-kjpaw_psl.1.0.0.UPF
+Cl  35.45    Cl.pbe-n-kjpaw_psl.1.0.0.UPF
+
+CELL_PARAMETERS angstrom
+   4.987676353   0.000000000   0.000000000
+   0.000000000   4.987676353   0.000000000
+   0.000000000   0.000000000   4.987676353
+
+ATOMIC_POSITIONS (crystal)
+Rb   0.0000000000   0.0000000000   0.0000000000
+Zn   0.5000000000   0.5000000000   0.5000000000
+Cl   0.5000000000   0.5000000000   0.0000000000
+Cl   0.5000000000   0.0000000000   0.5000000000
+Cl   0.0000000000   0.5000000000   0.5000000000
+
+K_POINTS automatic
+8 8 8  0 0 0

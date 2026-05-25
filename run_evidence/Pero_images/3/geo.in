@@ -1,0 +1,55 @@
+&CONTROL
+  calculation   = 'vc-relax',
+  prefix        = 'rbzncl3',
+  outdir        = './tmp/',
+  pseudo_dir    = '/home/administrator/Downloads/BURAI/BURAI1.3/pseudopot/',
+  tprnfor       = .true.,
+  tstress       = .true.,
+  wf_collect    = .true.,
+  etot_conv_thr = 1.0d-7,
+  forc_conv_thr = 1.0d-5,
+/
+
+&SYSTEM
+  ibrav         = 0,
+  nat           = 5,
+  ntyp          = 3,
+  ecutwfc       = 100.0,
+  ecutrho       = 800.0,
+  occupations   = 'fixed',
+  input_dft     = 'PBE',
+/
+
+&ELECTRONS
+  conv_thr       = 1.0d-12,
+  mixing_beta    = 0.3,
+/
+
+&IONS
+  ion_dynamics = 'bfgs',
+/
+
+&CELL
+  cell_dynamics = 'bfgs',
+  press_conv_thr = 0.1,
+/
+
+ATOMIC_SPECIES
+Rb  85.4678  Rb.pbe-spn-kjpaw_psl.1.0.0.UPF
+Zn  65.38    Zn.pbe-spn-kjpaw_psl.1.0.0.UPF
+Cl  35.45    Cl.pbe-n-kjpaw_psl.1.0.0.UPF
+
+ATOMIC_POSITIONS crystal
+Rb  0.000000  0.000000  0.000000
+Zn  0.500000  0.500000  0.500000
+Cl  0.500000  0.500000  0.000000
+Cl  0.500000  0.000000  0.500000
+Cl  0.000000  0.500000  0.500000
+
+CELL_PARAMETERS angstrom
+  4.836610383  0.000000000  0.000000000
+  0.000000000  4.836610383  0.000000000
+  0.000000000  0.000000000  4.836610383
+
+K_POINTS automatic
+12 12 12  0 0 0

@@ -1,0 +1,10 @@
+&INPUT_THERMO
+  prefix         = 'csnbs3'
+  outdir         = './tmp/'
+  fildyn         = 'csnbs3.dynG'
+  calculation    = 'elastic_tensor'
+  nstep_strain   = 6
+  delta_strain   = 0.006
+  etot_conv_thr  = 1.0d-6
+  verbose        = .true.
+/
