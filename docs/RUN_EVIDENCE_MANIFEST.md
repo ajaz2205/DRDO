@@ -1,6 +1,6 @@
 # Run Evidence Manifest
 
-This folder is a GitHub-ready subset of the local computational run folders. It keeps the files needed to demonstrate the workflow while excluding confidential thesis material and heavy numerical scratch artifacts.
+This folder is a GitHub-ready subset of the local computational run folders. It keeps the files needed to demonstrate the workflow while excluding confidential source material and heavy numerical scratch artifacts.
 
 ## Primary Public Proof Files
 
