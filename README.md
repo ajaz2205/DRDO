@@ -16,6 +16,9 @@ This repository contains a compact, non-confidential proof package for Novyte Ma
 - `docs/Novyte_AI_ML_DFT_Inverse_Materials_Workflow.md`  
   Technical note explaining the Novyte workflow, algebraic formulation, DFT validation ladder, and how the same workflow maps to inverse design for thermal-signature-reduction and infrared-response-controlled materials.
 
+- `docs/Novyte_Materials_Discrete_Methodology_Math.md`  
+  Detailed discrete methodology with mathematical formulation for candidate generation, custom RL search, deep learning property prediction, DFT validation, thermal/IR objectives, and final material ranking.
+
 ## Positioning
 
 The completed work demonstrates that Novyte Materials can:
@@ -26,4 +29,8 @@ The completed work demonstrates that Novyte Materials can:
 - evaluate thermodynamic, dynamic, mechanical, and thermal stability,
 - extend the same workflow toward emissivity, infrared response, and coating-material optimization.
 
-This package is intended as proof of computational capability and run traceability without exposing confidential thesis material.
+Detailed methodology:
+
+- `docs/Novyte_Materials_Discrete_Methodology_Math.md`
+
+This package is intended as proof of computational capability and run traceability without exposing confidential source material.
