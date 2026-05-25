@@ -19,10 +19,24 @@ The completed work demonstrates a validated computational workflow for:
 | Thermal signature reduction | Workflow can minimize thermal contrast using emissivity and spectral radiance objectives. Existing run already includes thermal/Debye descriptors such as heat capacity, entropy, vibrational energy, and free-energy trends. |
 | Infrared camouflage materials/coatings | Candidate screening can be extended to IR optical constants, spectral absorptivity, reflectivity, and emissivity. Stable thin-film-compatible material candidates are identified computationally before synthesis. |
 | Emissivity prediction and optimization | The inverse-design objective can include target emissivity spectra across MWIR/LWIR bands. DFT optical response can be used to derive emissivity-related descriptors. |
-| AI/ML-based material discovery | Demonstrated Bayesian/ML material search and property prediction workflow. |
+| AI/ML-based material discovery | Demonstrated custom RL-driven material search and deep learning property prediction workflow. |
 | Inverse material design | Demonstrated objective-driven candidate ranking, where the model proposes candidates likely to improve the target property. |
 | Multispectral camouflage technologies | Same objective can be expanded across visible, near-infrared, mid-infrared, and long-wave infrared windows. |
 | DFT validation | Demonstrated first-principles validation through relaxation, SCF, phonon, elastic, and thermal calculations. |
+
+### 2.1 DRDO Query-Wise Response
+
+Novyte Materials' completed work maps to the requested technical areas as follows:
+
+| Requested Information | Novyte Materials Response |
+|---|---|
+| Technical approaches | Custom RL-driven inverse search, deep learning property prediction, descriptor engineering, DFT validation, phonon checks, elastic checks, and thermal/Debye analysis. |
+| Developed models | Custom RL candidate-selection policy, deep learning property models, descriptor-based screening models, and physics-informed objective functions for stability and thermal-response extension. |
+| Simulation studies | Relaxation, SCF, formation-energy evaluation, stability screening, phonon/dynamical calculations, elastic tensor analysis, and Debye thermal calculations. |
+| Experimental/prototype direction | The present package demonstrates the computational design and validation layer. The next step is coating fabrication and IR/emissivity testing of shortlisted candidates. |
+| Sample results | Run evidence includes input decks, output logs, dynamical matrices, elastic outputs, and thermal/Debye plot artifacts. |
+| Case-study relevance | The same workflow can be redirected from stability-first material screening to emissivity-controlled coating discovery by changing the reward/objective function. |
+| Demonstrable outcomes | A non-confidential run package is provided with calculation traces and a full inverse-design formulation for thermal-signature reduction. |
 
 ## 3. What Has Been Completed
 
@@ -33,7 +47,7 @@ The completed run includes:
 1. Candidate material generation from chemical and structural rules.
 2. Numerical descriptor construction from elemental, structural, and energetic features.
 3. ML-based stability and property screening.
-4. Bayesian search to prioritize high-value candidates.
+4. Custom RL search policy to prioritize high-value candidates.
 5. DFT geometry relaxation and electronic self-consistency.
 6. Formation energy and convex-hull style stability evaluation.
 7. Phonon/dynamical stability checks.
@@ -176,7 +190,7 @@ C_V = 9 N k_B (T / theta_D)^3 integral_0^{theta_D/T}
 
 These outputs are relevant to coating performance under temperature variation and thermal cycling.
 
-## 7. AI/ML And Bayesian Search
+## 7. Custom RL And Deep Learning Search
 
 The AI/ML layer converts each material candidate into descriptors:
 
@@ -186,19 +200,21 @@ x(m) = [radius, electronegativity, charge, packing, tolerance,
         thermal descriptors, structural descriptors]
 ```
 
-The model predicts stability/property scores:
+The deep learning models predict stability/property scores:
 
 ```text
 y_hat = f(x)
 ```
 
-Bayesian optimization selects the next candidate using an acquisition function such as expected improvement:
+The custom RL controller selects the next candidate by learning a policy that maximizes long-term material-design reward:
 
 ```text
-x_next = argmax EI(x)
+pi_theta(a_t | s_t) = policy network for candidate action a_t
+R_t = -J_total(m_t)
+x_next = argmax_a pi_theta(a | s_t)
 ```
 
-This is the inverse-design engine: the model does not merely predict known materials; it proposes the next candidates most likely to improve the desired objective.
+Here `s_t` contains the current material state, descriptors, prior DFT results, and target IR/thermal objectives. The reward increases when a candidate improves stability, thermal response, emissivity match, and manufacturability. This is the inverse-design engine: the model does not merely predict known materials; it proposes the next candidates most likely to improve the desired objective.
 
 ## 8. Proposed DRDO-Specific Workflow
 
@@ -207,8 +223,8 @@ For the defence thermal-signature-reduction application, Novyte Materials can ex
 1. Define target IR bands, background conditions, and operating temperatures.
 2. Build an emissivity/thermal-contrast objective.
 3. Generate candidate coating materials and composite formulations.
-4. Use ML models to predict stability and IR-relevant descriptors.
-5. Use Bayesian optimization to propose improved candidates.
+4. Use deep learning models to predict stability and IR-relevant descriptors.
+5. Use the custom RL search policy to propose improved candidates.
 6. Validate shortlisted materials using DFT stability and optical-response calculations.
 7. Rank candidates for synthesis based on thermal signature, stability, toxicity, cost, and processability.
 8. Move top candidates to coating fabrication and experimental IR testing.

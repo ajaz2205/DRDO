@@ -1,8 +1,8 @@
-# Novyte AI/ML-DFT Materials Discovery and Inverse Design Workflow
+# Novyte Materials Custom RL, Deep Learning, and DFT Inverse Design Workflow
 
 ## 1. Executive Summary
 
-Novyte has completed a computational materials discovery workflow in which AI/ML models are used to generate and prioritize candidate functional crystalline materials, followed by first-principles DFT validation. The demonstrated run includes descriptor construction, Bayesian search, ML-based property prediction, thermodynamic screening, convex-hull assessment, phonon stability checks, elastic stability checks, and thermal/Debye analysis.
+Novyte Materials has completed a computational materials discovery workflow in which custom reinforcement learning (RL) and deep learning models are used to generate and prioritize candidate functional crystalline materials, followed by first-principles DFT validation. The demonstrated run includes descriptor construction, RL-guided candidate search, deep learning property prediction, thermodynamic screening, convex-hull assessment, phonon stability checks, elastic stability checks, and thermal/Debye analysis.
 
 This workflow directly maps to the DRDO research activity on AI/ML-based material development for thermal-signature reduction. The completed work proves the core capability: automated material candidate generation, physics-aware screening, and DFT-backed validation. The same framework can be extended toward controlled emissivity, infrared response, and coating-material inverse design by replacing or augmenting the target property from stability-only objectives to spectral/thermal objectives.
 
@@ -12,7 +12,7 @@ The completed run demonstrates the following technical capabilities:
 
 1. AI/ML-assisted material candidate generation.
 2. Descriptor-based screening using chemical, structural, and energetic features.
-3. Bayesian optimization for search through a large candidate space.
+3. Custom RL search through a large candidate space.
 4. DFT validation using electronic-structure calculations.
 5. Formation-energy and convex-hull stability assessment.
 6. Phonon-based dynamic stability verification.
@@ -28,7 +28,7 @@ The workflow is organized as a design-validate loop:
 2. Convert each candidate into a numerical feature vector.
 3. Apply chemical validity filters.
 4. Predict stability-related properties using ML models.
-5. Use Bayesian optimization to propose high-value candidates.
+5. Use custom RL policies to propose high-value candidates.
 6. Validate shortlisted candidates using DFT.
 7. Apply thermodynamic, dynamic, mechanical, and thermal checks.
 8. Feed validated results back into the dataset.
@@ -37,7 +37,7 @@ The workflow is organized as a design-validate loop:
 In compact form:
 
 ```text
-Candidate chemistry -> descriptors -> ML prediction -> Bayesian selection
+Candidate chemistry -> descriptors -> deep learning prediction -> RL-guided selection
 -> DFT validation -> stability/property verdict -> updated search model
 ```
 
@@ -195,7 +195,7 @@ Where:
 - `G_hat` = predicted Gibbs/free-energy-related stability metric.
 - `S_hat` = predicted stability score.
 
-In the demonstrated workflow, tree-based regression and Bayesian surrogate modeling are used to prioritize candidates while reducing the number of expensive first-principles calculations.
+In the demonstrated workflow, deep neural property models are used to prioritize candidates while reducing the number of expensive first-principles calculations.
 
 ### 7.2 Penalty-Aware Objective
 
@@ -229,51 +229,64 @@ P_packing = alpha_IPE max(0, |IPE - IPE_target| - delta_IPE)^2
 
 Soft penalties allow borderline candidates to remain in the search if their energetic promise is strong.
 
-## 8. Bayesian Optimization
+## 8. Custom Reinforcement Learning Search
 
-Bayesian optimization is used to decide which candidate should be evaluated next.
+Custom reinforcement learning is used to decide which candidate should be evaluated next. The RL controller treats materials discovery as a sequential decision problem where each proposed composition or coating candidate is an action, and the final reward is based on stability, thermal response, emissivity matching, and manufacturability.
 
-The unknown objective function is modeled as a Gaussian process:
-
-```text
-f(x) ~ GP(mu(x), k(x, x'))
-```
-
-After observing data `D = {(x_i, y_i)}`, the posterior gives:
+At step `t`, the agent observes a state:
 
 ```text
-mu_post(x) = expected objective value
-sigma_post(x) = uncertainty at x
-```
-
-The acquisition function balances exploitation and exploration.
-
-For expected improvement:
-
-```text
-EI(x) = (f_best - mu_post(x) - xi) Phi(Z) + sigma_post(x) phi(Z)
+s_t = [x(m_t), y_hat(m_t), DFT_status_t, target_IR, constraints, history_t]
 ```
 
 Where:
 
-```text
-Z = (f_best - mu_post(x) - xi) / sigma_post(x)
-```
+- `x(m_t)` = material descriptor vector.
+- `y_hat(m_t)` = deep learning predictions for stability and target properties.
+- `DFT_status_t` = available first-principles validation results.
+- `target_IR` = desired emissivity or thermal-response profile.
+- `constraints` = stability, toxicity, cost, and processability limits.
+- `history_t` = previously explored candidates and outcomes.
 
-For minimization:
-
-- `f_best` = best current objective value.
-- `Phi` = normal cumulative distribution function.
-- `phi` = normal probability density function.
-- `xi` = exploration parameter.
-
-The next candidate is selected as:
+The agent chooses an action:
 
 ```text
-x_next = argmax EI(x)
+a_t = policy_theta(s_t)
 ```
 
-This is the core inverse search engine: instead of manually testing one material at a time, the model asks which candidate is most likely to improve the target objective.
+The action may generate a new candidate, modify an existing candidate, substitute an element, change stoichiometry, or adjust a coating formulation.
+
+The reward is tied to the inverse-design objective:
+
+```text
+R_t = -J_total(m_t)
+```
+
+with:
+
+```text
+J_total(m) =
+  a1 J_emissivity
++ a2 C_thermal
++ a3 P_stability
++ a4 P_mechanical
++ a5 P_process
++ a6 P_environment
+```
+
+The RL objective is:
+
+```text
+theta_star = argmax_theta E[sum_t gamma^t R_t]
+```
+
+The next candidate is selected by the learned policy:
+
+```text
+x_next = argmax_a pi_theta(a | s_t)
+```
+
+This is the core inverse search engine: instead of manually testing one material at a time, the custom RL model learns which candidate action is most likely to improve the material objective after accounting for DFT cost, stability risk, and the target IR/thermal response.
 
 ## 9. DFT Validation Layer
 
@@ -530,7 +543,7 @@ For thermal-signature-reduction materials, the inverse design loop becomes:
 Define target IR/thermal response
 -> generate candidate coating materials
 -> predict stability and emissivity descriptors
--> choose next candidates by Bayesian acquisition
+-> choose next candidates using the custom RL policy
 -> validate by DFT optical, phonon, elastic, and thermal calculations
 -> rank candidates by thermal contrast and manufacturability
 -> recommend top materials for synthesis/coating trials
@@ -540,8 +553,8 @@ Define target IR/thermal response
 
 | DRDO Requirement | Matching Novyte Capability |
 |---|---|
-| AI/ML-based material discovery | Demonstrated ML/Bayesian candidate generation and prioritization |
-| Inverse material design | Bayesian acquisition and objective-driven candidate selection |
+| AI/ML-based material discovery | Demonstrated custom RL candidate generation and deep learning property prediction |
+| Inverse material design | RL policy optimization and objective-driven candidate selection |
 | DFT validation | Demonstrated DFT relaxation, SCF, phonon, elastic, and thermal validation |
 | Emissivity prediction and optimization | Direct extension using DFT optical constants and emissivity objective functions |
 | Thermal signature reduction | Direct extension using radiance/thermal-contrast minimization |
@@ -560,7 +573,7 @@ Proven by the completed run:
 Next extension for DRDO:
 
 - add optical and dielectric-property calculations,
-- train emissivity/infrared-response surrogate models,
+- train emissivity/infrared-response deep learning models,
 - define background-matched thermal contrast objectives,
 - run inverse design for candidate coating compositions,
 - validate top candidates through DFT optical, thermal, and mechanical calculations,
@@ -568,4 +581,4 @@ Next extension for DRDO:
 
 ## 17. Suggested Technical Statement
 
-Novyte has already demonstrated a validated AI/ML-DFT materials discovery workflow. The completed run shows how candidate functional materials can be generated using ML/Bayesian methods and validated using first-principles calculations, including energy, hull stability, phonon stability, elastic stability, and thermal/Debye analysis. This same workflow is directly extensible to the DRDO objective by incorporating emissivity, optical response, and thermal-contrast objectives for inverse design of infrared-response-controlled coating materials.
+Novyte Materials has already demonstrated a validated custom RL/deep learning-DFT materials discovery workflow. The completed run shows how candidate functional materials can be generated using RL-guided search and deep learning property models, then validated using first-principles calculations including energy, hull stability, phonon stability, elastic stability, and thermal/Debye analysis. This same workflow is directly extensible to the DRDO objective by incorporating emissivity, optical response, and thermal-contrast objectives for inverse design of infrared-response-controlled coating materials.

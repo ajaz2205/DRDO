@@ -20,7 +20,7 @@ This repository contains a compact, non-confidential proof package for Novyte Ma
 
 The completed work demonstrates that Novyte Materials can:
 
-- generate candidate functional crystalline materials using AI/ML and Bayesian search,
+- generate candidate functional crystalline materials using custom reinforcement learning (RL) and deep learning models,
 - screen candidates using structural and chemical descriptors,
 - validate shortlisted candidates using DFT calculations,
 - evaluate thermodynamic, dynamic, mechanical, and thermal stability,
