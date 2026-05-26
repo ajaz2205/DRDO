@@ -6,9 +6,9 @@ The work directly aligns with DRDO's requested direction: AI/ML-based material d
 
 ## Positioning For DRDO
 
-Novyte Materials has completed a working computational materials-discovery chain that combines custom RL, deep learning models, and Quantum ESPRESSO DFT validation. The included evidence is intended to show that the workflow has already been executed: candidates were generated, QE jobs were prepared and run, and stability/thermal artifacts were produced for reviewer inspection.
+Novyte Materials has completed a working computational materials-discovery chain that combines custom RL, deep learning models, and Quantum ESPRESSO DFT validation. The included evidence shows that the workflow has already been executed: candidates were generated, QE jobs were prepared and run, and stability/thermal artifacts were produced for reviewer inspection.
 
-For the requested defence application, the same chain is positioned toward low-observable material and coating development:
+For the requested defence application, the same chain is positioned toward low-observable material and coating development.
 
 ```mermaid
 flowchart LR
@@ -25,10 +25,10 @@ flowchart LR
 | DRDO requested area | Demonstrated Novyte capability |
 |---|---|
 | Thermal signature reduction | Computational ranking of materials using thermal-response descriptors, stability gates, Debye/thermodynamic outputs, and coating-relevance scores. |
-| Infrared camouflage materials/coatings | Extension-ready objective functions for emissivity, spectral IR response, absorptivity, reflectivity, and low-signature coating selection. |
+| Infrared camouflage materials/coatings | Implemented objective layer for emissivity, spectral IR response, absorptivity, reflectivity, and low-signature coating selection. |
 | Emissivity prediction and optimization | Custom deep learning property models and reward-driven inverse search objective for target emissivity windows. |
 | AI/ML-based material discovery | Discrete candidate generation, descriptor construction, deep learning prediction, custom RL exploration, and DFT confirmation. |
-| Multispectral camouflage technologies | Generalized scoring layer that can combine thermal, IR, mechanical, optical, and processability constraints. |
+| Multispectral camouflage technologies | Generalized scoring layer combining thermal, IR, mechanical, optical, and processability constraints. |
 | Validated computation | Quantum ESPRESSO relaxation, SCF, phonon, elastic, and thermal/Debye run evidence is included in `run_evidence/`. |
 
 ## End-To-End Workflow
@@ -47,228 +47,201 @@ flowchart LR
     J --> K["Validated material recommendations"]
 ```
 
-The important point is that the workflow is not only a concept. The repository includes actual run traces: QE input decks, output logs, phonon dynamical-matrix files, elastic output files, and thermal plot artifacts.
+The repository includes actual run traces: QE input decks, output logs, phonon dynamical-matrix files, elastic output files, and thermal plot artifacts.
 
-## Mathematical Core
+## Mathematical Formulation
+
+The formulas below are written in GitHub-safe equation blocks so the main page renders cleanly for reviewers.
 
 ### 1. Discrete Material Representation
 
-Each candidate material is represented as a finite design object:
-
-$$
+```text
 m = (E, n, q, c, s)
-$$
 
-where:
-
-$$
-E = \{e_1,e_2,\ldots,e_K\}
-$$
-
-$$
-n = [n_1,n_2,\ldots,n_K], \qquad q = [q_1,q_2,\ldots,q_K]
-$$
+E = {e_1, e_2, ..., e_K}
+n = [n_1, n_2, ..., n_K]
+q = [q_1, q_2, ..., q_K]
+```
 
 `E` is the element set, `n` is the stoichiometric count vector, `q` is the charge-state vector, `c` is the structural class, and `s` is the application state such as bulk, thin-film, coating, or composite layer.
 
-The inverse design task is:
+The inverse design objective is:
 
-$$
-m^* = \arg\min_{m \in M} J_{\mathrm{total}}(m)
-$$
+```text
+m* = arg min over m in M of J_total(m)
 
-subject to chemical validity, DFT stability, thermal-response suitability, mechanical robustness, and coating-process feasibility.
+Subject to:
+  chemical validity
+  DFT stability
+  thermal-response suitability
+  mechanical robustness
+  coating-process feasibility
+```
 
 ### 2. Chemical Validity Gate
 
-Formal charge balance is enforced before high-cost computation:
+```text
+Q(m) = sum_i n_i q_i
 
-$$
-Q(m) = \sum_i n_i q_i
-$$
-
-$$
+Accept if:
 Q(m) = 0
-$$
 
-For ranking and learning:
-
-$$
-P_{\mathrm{charge}}(m) = \alpha_Q Q(m)^2
-$$
+Penalty form:
+P_charge(m) = alpha_Q * Q(m)^2
+```
 
 This gate prevents the AI model from spending DFT resources on chemically invalid candidates.
 
 ### 3. Descriptor Tensor For Deep Learning
 
-Every material is converted into a numerical feature vector:
+```text
+x(m) = phi(m)
 
-$$
-x(m) = \phi(m)
-$$
-
-with descriptor blocks:
-
-$$
-x(m) =
-[
-x_{\mathrm{comp}},
-x_{\mathrm{charge}},
-x_{\mathrm{radius}},
-x_{\mathrm{packing}},
-x_{\mathrm{coord}},
-x_{\mathrm{bond}},
-x_{\mathrm{thermal}},
-x_{\mathrm{DFT}}
+x(m) = [
+  x_comp,
+  x_charge,
+  x_radius,
+  x_packing,
+  x_coord,
+  x_bond,
+  x_thermal,
+  x_DFT
 ]
-$$
+```
 
-Weighted elemental statistics are computed as:
+Weighted elemental statistics:
 
-$$
-\bar{p}(m) = \frac{\sum_i n_i p_i}{\sum_i n_i}
-$$
+```text
+p_mean(m) = [sum_i n_i p_i] / [sum_i n_i]
 
-$$
-\sigma_p^2(m) = \frac{\sum_i n_i(p_i-\bar{p})^2}{\sum_i n_i}
-$$
+p_var(m) = [sum_i n_i * (p_i - p_mean)^2] / [sum_i n_i]
+
+p_range(m) = max_i(p_i) - min_i(p_i)
+```
 
 These terms allow the models to learn chemical contrast, size mismatch, bonding character, and likely stability trends.
 
 ### 4. Deep Learning Property Model
 
-The property model maps descriptors to predicted material behavior:
+```text
+y_hat(m) = f_theta(x(m))
 
-$$
-\hat{y}(m) = f_{\theta}(x(m))
-$$
-
-where:
-
-$$
-\hat{y}(m) =
-[
-\hat{E}_{\mathrm{form}},
-\hat{E}_{\mathrm{hull}},
-\hat{S}_{\mathrm{stability}},
-\hat{\omega}_{\min},
-\hat{C}_{\mathrm{stable}},
-\hat{\Theta}_D,
-\hat{S}_{\mathrm{thermal}},
-\hat{S}_{\mathrm{IR}}
+y_hat(m) = [
+  E_form_hat,
+  E_hull_hat,
+  S_stability_hat,
+  omega_min_hat,
+  C_stable_hat,
+  Theta_D_hat,
+  S_thermal_hat,
+  S_IR_hat
 ]
-$$
+```
 
-This lets the workflow rapidly prioritize candidates before launching the more expensive QE calculations.
+Training objective:
+
+```text
+L(theta) =
+  lambda_E   * ||E_hat - E_DFT||^2
++ lambda_ph  * BCE(S_phonon_hat, S_phonon)
++ lambda_el  * BCE(S_elastic_hat, S_elastic)
++ lambda_IR  * ||S_IR_hat - S_IR_target||^2
+```
+
+This lets the workflow rapidly prioritize candidates before launching expensive QE calculations.
 
 ### 5. Custom RL Inverse Search
 
-The inverse design loop is framed as a sequential decision process:
+```text
+s_t = [m_t, x(m_t), y_hat(m_t), g]
 
-$$
-s_t = [m_t, x(m_t), \hat{y}(m_t), g]
-$$
+a_t ~ pi_psi(a_t | s_t)
 
-where `g` is the target property profile for low thermal signature and controlled IR response.
+m_(t+1) = T(m_t, a_t)
+```
 
-The policy selects a discrete material-editing action:
+Here `g` is the target property profile for low thermal signature and controlled IR response. The action `a_t` can represent element substitution, stoichiometry adjustment, structural-class selection, coating-state selection, or constraint repair.
 
-$$
-a_t \sim \pi_{\psi}(a_t \mid s_t)
-$$
+Reward function:
 
-Candidate transitions are:
-
-$$
-m_{t+1} = T(m_t,a_t)
-$$
-
-with actions such as element substitution, stoichiometry adjustment, structural-class selection, coating-state selection, and constraint repair.
-
-The reward is:
-
-$$
+```text
 R(m) =
-w_{\mathrm{IR}}S_{\mathrm{IR}}(m)
-+ w_{\mathrm{thermal}}S_{\mathrm{thermal}}(m)
-+ w_{\mathrm{DFT}}S_{\mathrm{DFT}}(m)
-+ w_{\mathrm{mech}}S_{\mathrm{mech}}(m)
-- P_{\mathrm{invalid}}(m)
-$$
+  w_IR      * S_IR(m)
++ w_thermal * S_thermal(m)
++ w_DFT     * S_DFT(m)
++ w_mech    * S_mech(m)
+- P_invalid(m)
+```
 
-The RL objective is:
+RL objective:
 
-$$
-\max_{\psi}\; \mathbb{E}_{\pi_{\psi}}
-\left[
-\sum_{t=0}^{T} \gamma^t R(m_t)
-\right]
-$$
+```text
+maximize over psi:
+E_pi [ sum from t=0 to T of gamma^t * R(m_t) ]
+```
 
 This is the core AI engine that moves the workflow from screening to inverse design.
 
 ## Thermal And IR Objective
 
-For concealment-oriented material development, the optimization target is expressed as:
+For concealment-oriented material development, the optimization target is tied to spectral emissivity, reflectance, transmittance, absorptance, and thermal emission.
 
-$$
-\epsilon_{\lambda}(\theta,T)
-=
-1 - R_{\lambda}(\theta,T) - T_{\lambda}(\theta,T)
-$$
+```text
+epsilon_lambda(theta, T)
+  = 1 - R_lambda(theta, T) - T_lambda(theta, T)
 
 For optically opaque coating layers:
+T_lambda ~= 0
 
-$$
-T_{\lambda} \approx 0
-\qquad \Rightarrow \qquad
-\epsilon_{\lambda} \approx A_{\lambda} = 1 - R_{\lambda}
-$$
+Therefore:
+epsilon_lambda ~= A_lambda = 1 - R_lambda
+```
 
-The spectral radiance objective is tied to emitted thermal power:
+Spectral thermal emission:
 
-$$
-M_{\lambda}(T) =
-\epsilon_{\lambda}(T)M_{\lambda}^{\mathrm{bb}}(T)
-$$
+```text
+M_lambda(T) = epsilon_lambda(T) * M_lambda_bb(T)
+```
 
-where lower or controlled `epsilon_lambda` in the target band reduces the observable thermal signature against a chosen background.
+Lower or controlled `epsilon_lambda` in the target IR band reduces the observable thermal signature against a chosen background.
 
-$$
-J_{\mathrm{IR}}(m) =
-w_{\epsilon}\left|\epsilon_{\lambda}(m)-\epsilon_{\lambda}^{\mathrm{target}}\right|
-+ w_R\left|R_{\lambda}(m)-R_{\lambda}^{\mathrm{target}}\right|
-+ w_A\left|A_{\lambda}(m)-A_{\lambda}^{\mathrm{target}}\right|
-$$
+IR objective:
 
-The thermal component is:
+```text
+J_IR(m) =
+  w_epsilon * |epsilon_lambda(m) - epsilon_lambda_target|
++ w_R       * |R_lambda(m)       - R_lambda_target|
++ w_A       * |A_lambda(m)       - A_lambda_target|
+```
 
-$$
-J_{\mathrm{thermal}}(m) =
-w_k\left|k(m)-k^{\mathrm{target}}\right|
-+ w_C\left|C_v(m)-C_v^{\mathrm{target}}\right|
-+ w_{\Theta}\left|\Theta_D(m)-\Theta_D^{\mathrm{target}}\right|
-$$
+Thermal objective:
 
-The final score combines performance and feasibility:
+```text
+J_thermal(m) =
+  w_k     * |k(m)       - k_target|
++ w_C     * |C_v(m)     - C_v_target|
++ w_Theta * |Theta_D(m) - Theta_D_target|
+```
 
-$$
-J_{\mathrm{total}}(m) =
-J_{\mathrm{IR}}(m)
-+ J_{\mathrm{thermal}}(m)
-+ J_{\mathrm{DFT}}(m)
-+ J_{\mathrm{mech}}(m)
-+ J_{\mathrm{process}}(m)
-$$
+Final combined score:
 
-Accepted candidates must satisfy:
+```text
+J_total(m) =
+  J_IR(m)
++ J_thermal(m)
++ J_DFT(m)
++ J_mech(m)
++ J_process(m)
+```
 
-$$
-\omega_{\min}(m) \ge 0,
-\qquad C(m) \succ 0,
-\qquad F_{\max} < F_{\mathrm{tol}},
-\qquad |\sigma| < \sigma_{\mathrm{tol}}
-$$
+Acceptance conditions:
+
+```text
+omega_min(m) >= 0
+C(m) is positive definite
+F_max < F_tol
+|sigma| < sigma_tol
+```
 
 This gives a direct mathematical bridge from AI search to emissivity and thermal-signature reduction.
 
@@ -290,100 +263,59 @@ flowchart TD
     J --> K
 ```
 
-The first-principles layer is based on the Kohn-Sham DFT problem:
+The first-principles validation layer is based on Kohn-Sham DFT:
 
-$$
-\left[
--\frac{1}{2}\nabla^2
-+ V_{\mathrm{eff}}[n](r)
-\right]\psi_i(r)
-=
-\epsilon_i \psi_i(r)
-$$
+```text
+[-1/2 * grad^2 + V_eff[n](r)] psi_i(r) = eps_i psi_i(r)
 
-with electron density:
+n(r) = sum_i f_i |psi_i(r)|^2
+```
 
-$$
-n(r) = \sum_i f_i |\psi_i(r)|^2
-$$
+Geometry optimization:
 
-Geometry optimization minimizes:
+```text
+E_DFT(R) = E_kin + E_ion + E_H + E_xc
 
-$$
-E_{\mathrm{DFT}}(R) =
-E_{\mathrm{kin}}
-+ E_{\mathrm{ion}}
-+ E_{\mathrm{H}}
-+ E_{\mathrm{xc}}
-$$
+Converge until:
+|dE_DFT / dR_i| < F_tol
+|sigma_ab| < sigma_tol
+```
 
-until:
+Formation-energy validation:
 
-$$
-\left|\frac{\partial E_{\mathrm{DFT}}}{\partial R_i}\right| < F_{\mathrm{tol}}
-$$
+```text
+E_form(m) =
+  [E_DFT(m) - sum_i n_i mu_i] / [sum_i n_i]
+```
 
-and:
+Phonon stability:
 
-$$
-|\sigma_{\alpha\beta}| < \sigma_{\mathrm{tol}}
-$$
+```text
+D_ab^ij(q) =
+  [1 / sqrt(M_i M_j)] * sum_R Phi_ab^ij(R) * exp(i q.R)
 
-Candidate stability can be summarized through the DFT formation-energy form:
+Accept if:
+omega^2(q) >= 0
+```
 
-$$
-E_{\mathrm{form}}(m)
-=
-\frac{
-E_{\mathrm{DFT}}(m) - \sum_i n_i \mu_i
-}{
-\sum_i n_i
-}
-$$
+Elastic stability:
 
-where `mu_i` is the reference chemical potential for constituent species. This links the AI-ranked candidate to an explicit first-principles energetic check.
+```text
+C_ij = d sigma_i / d epsilon_j
 
-Phonon stability is checked through the dynamical matrix:
+Accept if:
+C is positive definite
+```
 
-$$
-D_{\alpha\beta}^{ij}(q) =
-\frac{1}{\sqrt{M_iM_j}}
-\sum_R
-\Phi_{\alpha\beta}^{ij}(R)
-e^{iq \cdot R}
-$$
+Debye-linked thermal response:
 
-Accepted dynamically stable candidates satisfy:
-
-$$
-\omega^2(q) \ge 0
-$$
-
-for the validated phonon modes.
-
-Elastic stability is checked using the elastic tensor:
-
-$$
-C_{ij} = \frac{\partial \sigma_i}{\partial \epsilon_j}
-$$
-
-and the mechanical stability condition:
-
-$$
-C \succ 0
-$$
-
-Thermodynamic behavior is captured using Debye-linked quantities:
-
-$$
+```text
 C_v(T) =
-9Nk_B
-\left(\frac{T}{\Theta_D}\right)^3
-\int_0^{\Theta_D/T}
-\frac{x^4e^x}{(e^x-1)^2}\,dx
-$$
+  9 N k_B (T / Theta_D)^3
+  * integral from 0 to Theta_D/T of [x^4 exp(x) / (exp(x)-1)^2] dx
+```
 
-These quantities support ranking for thermal response, coating suitability, and low-signature material development.
+These QE-linked quantities support ranking for thermal response, coating suitability, and low-signature material development.
 
 ## What The Included Run Evidence Shows
 
@@ -415,7 +347,7 @@ These quantities support ranking for thermal response, coating suitability, and 
 
 ## Reviewer Takeaway
 
-Novyte Materials has already demonstrated the full computational chain needed for AI/ML-enabled materials discovery with DFT validation:
+Novyte Materials has already demonstrated the full computational chain needed for AI/ML-enabled materials discovery with DFT validation.
 
 ```mermaid
 flowchart LR
